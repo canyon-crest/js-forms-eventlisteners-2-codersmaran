@@ -17,7 +17,7 @@
 
 // STEP 1: Get the "Shout" button by its ID ("btnShout")
 //         using document.getElementById()
-
+let btn = document.getElementById("btnShout");
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
 //         a) Get the text from the input with ID "shoutInput"
@@ -28,7 +28,10 @@
 //            using .innerHTML
 //
 //         Example: "hello" → "HELLO!"
-
+btn.addEventListener("click", () => {
+    let text = shoutInput.value;
+    outShout.innerHTML = (text.toUpperCase() + "!");
+});
 
 // ============================================
 //  MAIN: Pizza Builder
@@ -43,6 +46,50 @@
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
+let btn1 = document.getElementById("btnCalc");
+btn1.addEventListener("click", () => {
+    let buttons = document.getElementsByName("rg");
+    for (let i = 0; i < buttons.length(); ++i) {
+        if (buttons[i].checked) {
+            let val = buttons[i].parseFloat();
+        }
+    }
+    let toppings = document.getElementsByName("cb");
+    let count = 0;
+    for (let i = 0; i < toppings.length(); ++i) {
+        if (toppings[i].checked) {
+            ++count;
+        }
+    }
+    count *= 0.5;
+    let type = document.getElementsById("serviceSelect").value;
+    let fee = 0;
+    if (type == "dinein") {
+        fee = 0;
+    } else if (type == "takeout") {
+        fee = 1.50;
+    } else {
+        fee = 3.00;
+    }
+    let total = fee + val + count;
+    let name = myInput.value();
+    if (name == "") {
+        name = "Customer";
+    }
+    myPara.innerHTML = name + ", your total is " + total.toFixed(2);
+
+});
+let Clear = document.getElementById("clearBtn");
+Clear.addEventListener("click", () => {
+    myInput.value = "";
+    r3.checked = true;
+    let topping = document.getElementsByName("cb");
+    for (let i = 0; i < topping.length; ++i) {
+        topping[i].checked = false;
+    }
+    serviceSelected.value = "dinein";
+    myPara.innerHTML = "";
+});
 
 //   a) Get the selected size price:
 //      Use document.getElementsByName("rg") to get all
