@@ -48,21 +48,22 @@ btn.addEventListener("click", () => {
 //         Inside the listener:
 let btn1 = document.getElementById("btnCalc");
 btn1.addEventListener("click", () => {
+    let val = 0;
     let buttons = document.getElementsByName("rg");
-    for (let i = 0; i < buttons.length(); ++i) {
+    for (let i = 0; i < buttons.length; ++i) {
         if (buttons[i].checked) {
-            let val = buttons[i].parseFloat();
+            val = parseFloat(buttons[i].value);
         }
     }
     let toppings = document.getElementsByName("cb");
     let count = 0;
-    for (let i = 0; i < toppings.length(); ++i) {
+    for (let i = 0; i < toppings.length; ++i) {
         if (toppings[i].checked) {
             ++count;
         }
     }
     count *= 0.5;
-    let type = document.getElementsById("serviceSelect").value;
+    let type = document.getElementById("serviceSelect").value;
     let fee = 0;
     if (type == "dinein") {
         fee = 0;
@@ -72,11 +73,11 @@ btn1.addEventListener("click", () => {
         fee = 3.00;
     }
     let total = fee + val + count;
-    let name = myInput.value();
+    let name = myInput.value;
     if (name == "") {
         name = "Customer";
     }
-    myPara.innerHTML = name + ", your total is " + total.toFixed(2);
+    myPara.innerHTML = name + ", your total is $" + total.toFixed(2);
 
 });
 let Clear = document.getElementById("clearBtn");
@@ -87,7 +88,7 @@ Clear.addEventListener("click", () => {
     for (let i = 0; i < topping.length; ++i) {
         topping[i].checked = false;
     }
-    serviceSelected.value = "dinein";
+    serviceSelect.value = "dinein";
     myPara.innerHTML = "";
 });
 
